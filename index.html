@@ -505,39 +505,60 @@
         </div>
 
         <!-- Conheça Nosso Parceiro Section -->
-        <div class="mt-8 max-w-sm">
+        <div class="mt-8 max-w-sm m-auto">
           <p
             class="text-text-muted text-xs tracking-widest uppercase text-center mb-3"
           >
             Conheça nosso parceiro
           </p>
-          <div class="grid grid-cols-3 gap-2">
-            <div class="aspect-square rounded-lg overflow-hidden">
+          <div id="parceiro-carousel" class="grid grid-cols-3 gap-2">
+            <div class="aspect-square rounded-lg overflow-hidden relative">
               <img
-                src="assets/sobremesa_1.png"
-                alt="Sobremesa Mendoá"
-                class="w-full h-full object-cover"
+                id="parceiro-img-1-a"
+                src="assets/ovo_chocolate_mendoa.png"
+                alt="Chocolates Mendoá"
+                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
+              />
+              <img
+                id="parceiro-img-1-b"
+                src="assets/ovo_chocolate_mendoa.png"
+                alt="Chocolates Mendoá"
+                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0"
               />
             </div>
-            <div class="aspect-square rounded-lg overflow-hidden">
+            <div class="aspect-square rounded-lg overflow-hidden relative">
               <img
-                src="assets/sobremesa_1.png"
-                alt="Sobremesa Mendoá"
-                class="w-full h-full object-cover"
+                id="parceiro-img-2-a"
+                src="assets/chocolate_derretido_mendoa.jpg"
+                alt="Chocolates Mendoá"
+                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
+              />
+              <img
+                id="parceiro-img-2-b"
+                src="assets/chocolate_derretido_mendoa.jpg"
+                alt="Chocolates Mendoá"
+                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0"
               />
             </div>
-            <div class="aspect-square rounded-lg overflow-hidden">
+            <div class="aspect-square rounded-lg overflow-hidden relative">
               <img
-                src="assets/sobremesa_1.png"
-                alt="Sobremesa Mendoá"
-                class="w-full h-full object-cover"
+                id="parceiro-img-3-a"
+                src="assets/bolo_chocolate_mendoa.jpg"
+                alt="Chocolates Mendoá"
+                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
+              />
+              <img
+                id="parceiro-img-3-b"
+                src="assets/bolo_chocolate_mendoa.jpg"
+                alt="Chocolates Mendoá"
+                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0"
               />
             </div>
           </div>
         </div>
 
         <!-- WhatsApp CTA -->
-        <div class="mb-12 sm:mb-16 text-center">
+        <div class="mb-12 sm:mb-16 text-center mt-6">
           <div class="flex items-center justify-center gap-4 mb-6">
             <div class="h-px w-12 bg-beige-dark"></div>
             <span class="text-text-muted text-sm tracking-widest uppercase"
@@ -900,6 +921,73 @@
           );
         }
       });
+
+      // Carrossel de imagens do parceiro - crossfade suave
+      const parceiroImages = [
+        [
+          "assets/ovo_chocolate_mendoa.png",
+          "assets/chocolate_derretido_mendoa.jpg",
+          "assets/bolo_chocolate_mendoa.jpg",
+        ],
+        [
+          "assets/cacau_mendoa.jpg",
+          "assets/ovo_quebrado_chocolate_mendoa.jpg",
+          "assets/cookie_mendoa.jpg",
+        ],
+        [
+          "assets/graos_chocolate.jpg",
+          "assets/chocolate_coco_mendoa.jpg",
+          "assets/mulher_chocolate_derretendo_mendoa.jpg",
+        ],
+      ];
+
+      let currentSlide = 0;
+
+      const img1a = document.getElementById("parceiro-img-1-a");
+      const img1b = document.getElementById("parceiro-img-1-b");
+      const img2a = document.getElementById("parceiro-img-2-a");
+      const img2b = document.getElementById("parceiro-img-2-b");
+      const img3a = document.getElementById("parceiro-img-3-a");
+      const img3b = document.getElementById("parceiro-img-3-b");
+
+      function changeParceiroImages() {
+        currentSlide = (currentSlide + 1) % parceiroImages.length;
+
+        // Carrega a nova imagem na camada B (que está invisível por cima)
+        img1b.src = parceiroImages[currentSlide][0];
+        img2b.src = parceiroImages[currentSlide][1];
+        img3b.src = parceiroImages[currentSlide][2];
+
+        // Fade in da camada B (aparece por cima da A)
+        img1b.style.opacity = "1";
+        img2b.style.opacity = "1";
+        img3b.style.opacity = "1";
+
+        // Depois da transição, atualiza A e esconde B instantaneamente
+        setTimeout(() => {
+          img1a.src = parceiroImages[currentSlide][0];
+          img2a.src = parceiroImages[currentSlide][1];
+          img3a.src = parceiroImages[currentSlide][2];
+
+          // Remove transição temporariamente para resetar B sem animação
+          img1b.style.transition = "none";
+          img2b.style.transition = "none";
+          img3b.style.transition = "none";
+
+          img1b.style.opacity = "0";
+          img2b.style.opacity = "0";
+          img3b.style.opacity = "0";
+
+          // Restaura transição
+          setTimeout(() => {
+            img1b.style.transition = "";
+            img2b.style.transition = "";
+            img3b.style.transition = "";
+          }, 50);
+        }, 700);
+      }
+
+      setInterval(changeParceiroImages, 3000);
     </script>
   </body>
 </html>
