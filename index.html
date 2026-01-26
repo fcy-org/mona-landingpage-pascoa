@@ -122,12 +122,12 @@
         <div class="flex items-center justify-between h-16 sm:h-20">
           <!-- Logo -->
           <a href="https://www.monahotel.com.br" class="flex items-center">
-            <span
+            <img
               id="logo"
-              class="font-serif text-2xl sm:text-3xl font-semibold tracking-wide transition-colors text-white drop-shadow-lg"
-            >
-              MONÃ
-            </span>
+              src="assets/mona_logo.png"
+              alt="Monã"
+              class="h-8 sm:h-10 w-auto transition-opacity drop-shadow-lg"
+            />
           </a>
 
           <!-- Navigation -->
@@ -279,7 +279,11 @@
           <h2
             class="font-serif text-3xl sm:text-4xl md:text-5xl text-chocolate font-light mb-4"
           >
-            Páscoa <span class="font-semibold italic">Monã</span>
+            Páscoa
+            <span
+              class="font-serif font-semibold tracking-wide transition-colors drop-shadow-lg"
+              >Monã</span
+            >
           </h2>
           <p class="text-text-muted max-w-2xl mx-auto text-lg">
             Uma programação especial para celebrar com sofisticação, afeto e
@@ -442,7 +446,7 @@
                   />
                 </svg>
                 <span class="text-sm text-text-secondary"
-                  >Produção bean-to-bar</span
+                  >Produção tree-to-bar</span
                 >
               </div>
               <div class="flex items-center gap-2">
@@ -845,7 +849,7 @@
                 Chocolates Mendoá
               </p>
               <p class="text-white/60 text-sm leading-relaxed">
-                Chocolates artesanais bean-to-bar, produzidos com cacau
+                Chocolates artesanais tree-to-bar, produzidos com cacau
                 brasileiro de origem única. Uma experiência sensorial
                 incomparável.
               </p>
@@ -879,8 +883,8 @@
       window.addEventListener("scroll", () => {
         if (window.scrollY > 50) {
           header.classList.add("header-scrolled");
-          logo.classList.remove("text-white", "drop-shadow-lg");
-          logo.classList.add("text-chocolate");
+          logo.src = "assets/mona_logo_dark.png";
+          logo.classList.remove("drop-shadow-lg");
           navExp.classList.remove("text-white/90");
           navExp.classList.add("text-text-secondary");
           navCardapio.classList.remove("text-white/90");
@@ -900,8 +904,8 @@
           );
         } else {
           header.classList.remove("header-scrolled");
-          logo.classList.add("text-white", "drop-shadow-lg");
-          logo.classList.remove("text-chocolate");
+          logo.src = "assets/mona_logo.png";
+          logo.classList.add("drop-shadow-lg");
           navExp.classList.add("text-white/90");
           navExp.classList.remove("text-text-secondary");
           navCardapio.classList.add("text-white/90");
